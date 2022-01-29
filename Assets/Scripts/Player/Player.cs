@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private IPlayerComponent[] m_playerComponents = {};
+    [SerializeField] private APlayerComponent[] m_playerComponents = {};
     [SerializeField] public int PlayerIndex { get; private set; }
 
     private void Awake()
