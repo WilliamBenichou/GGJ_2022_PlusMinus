@@ -51,10 +51,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: player_minus
       objectReference: {fileID: 0}
-    - target: {fileID: 1606661090569908788, guid: 93d23288bf4116248a8fdf9624dfafdf, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2518043670692128984, guid: 93d23288bf4116248a8fdf9624dfafdf, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -181,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8299126643060790493, guid: 93d23288bf4116248a8fdf9624dfafdf, type: 3}
       propertyPath: m_InstanceId
-      value: -7316
+      value: -29358
       objectReference: {fileID: 0}
     - target: {fileID: 8299126643060790493, guid: 93d23288bf4116248a8fdf9624dfafdf, type: 3}
       propertyPath: m_ShapePathHash
