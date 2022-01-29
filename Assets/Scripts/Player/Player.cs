@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private APlayerComponent[] m_playerComponents = {};
-    [SerializeField] public int PlayerIndex { get; private set; }
+    [field: SerializeField] public int PlayerIndex { get; private set; }
 
     private void Awake()
     {
