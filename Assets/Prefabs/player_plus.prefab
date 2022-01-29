@@ -338,6 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6870058022547640750}
   - component: {fileID: 8676311182154672388}
+  - component: {fileID: 8829872147637180554}
   m_Layer: 0
   m_Name: player_plus
   m_TagString: Untagged
@@ -385,6 +386,40 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8829872147637180554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606661090569908788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.56817245, y: 0.24988687, z: 0}
+  - {x: -0.53800964, y: -0.23245406, z: 0}
+  - {x: -0.10341644, y: -0.23671478, z: 0}
+  - {x: -0.11193657, y: -0.7266976, z: 0}
+  - {x: 0.29122353, y: -0.695993, z: 0}
+  - {x: 0.30561256, y: -0.20688969, z: 0}
+  - {x: 0.5229111, y: -0.21541119, z: 0}
+  - {x: 0.56977844, y: 0.16805366, z: 0}
+  - {x: 0.30400848, y: 0.21027103, z: 0}
+  - {x: 0.2885704, y: 0.67507935, z: 0}
+  - {x: -0.12505722, y: 0.653386, z: 0}
+  - {x: -0.10767555, y: 0.3043967, z: 0}
+  m_ShapePathHash: 155304069
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -185286
 --- !u!1 &2518043670692128984
 GameObject:
   m_ObjectHideFlags: 0
