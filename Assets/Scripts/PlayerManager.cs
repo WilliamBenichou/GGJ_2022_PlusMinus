@@ -27,7 +27,7 @@ public class PlayerManager
             s_playerActions[i].Enable();
             s_inputUsers[i] = InputUser.CreateUserWithoutPairedDevices();
             s_inputUsers[i].AssociateActionsWithUser(s_playerActions[i]);
-            Bind(i, null);
+            Bind_Internal(i, null);
         }
 
         s_inputUsers[0].ActivateControlScheme(s_playerActions[0].Player_1Scheme);
@@ -37,11 +37,17 @@ public class PlayerManager
         
         
         //temporary todo: remove that
-        Bind(0, Keyboard.current);
-        Bind(1, Keyboard.current);
+        Bind_Internal(0, Keyboard.current);
+        Bind_Internal(1, Gamepad.current);
     }
 
-    private static void Bind(int a_index, InputDevice a_device)
+    public static void Bind(int a_index, InputDevice a_device)
+    {
+        InitIfNeeded();
+        Bind_Internal(a_index, a_device);
+    }
+    
+    private static void Bind_Internal(int a_index, InputDevice a_device)
     {
         if (a_device == null)
         {
@@ -58,5 +64,11 @@ public class PlayerManager
     {
         InitIfNeeded();
         return s_playerActions[a_playerIndex];
+    }
+
+    public static InputDevice GetPlayerDevice(int a_playerIndex)
+    {
+        InitIfNeeded();
+        return s_inputUsers[a_playerIndex].pairedDevices[0];
     }
 }

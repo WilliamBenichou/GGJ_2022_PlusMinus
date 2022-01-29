@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4005908108517893146}
   - component: {fileID: 8587921652540482149}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: plus_left_eye_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1008417889286258729}
   - component: {fileID: 457461758586779898}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: plus_right_leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6590860097110703575}
   - component: {fileID: 3055858984665614329}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: plus_left_eyebrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 518520064620381253}
   - component: {fileID: 5309651158446361058}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: plus_left_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +354,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1606661090569908788}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.36, y: -0.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -427,7 +427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9078772196537770502}
   - component: {fileID: 3932954121702721101}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: plus_core (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5654546681013563745}
   - component: {fileID: 5653632169432407300}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: plus_right_arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -591,7 +591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6484256499837034983}
   - component: {fileID: 1179096876022126785}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: plus_left_leg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -673,7 +673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9078927760975341004}
   - component: {fileID: 3485875895790882546}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: plus_right_eyebrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -755,7 +755,7 @@ GameObject:
   m_Component:
   - component: {fileID: 263941831366661625}
   - component: {fileID: 7950179098622061758}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: playerAnimationController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -800,7 +800,7 @@ GameObject:
   - component: {fileID: 7627881136032553455}
   - component: {fileID: 297116748432850516}
   - component: {fileID: 8299126643060790493}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +880,7 @@ MonoBehaviour:
   - {x: -0.10767555, y: 0.3043967, z: 0}
   m_ShapePathHash: 155304069
   m_Mesh: {fileID: 0}
-  m_InstanceId: 28158
+  m_InstanceId: -21446
 --- !u!1 &5507317894059631798
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +891,7 @@ GameObject:
   m_Component:
   - component: {fileID: 591803971654680957}
   - component: {fileID: 38816160090047908}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: plus_right_eye_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -973,7 +973,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7534140739909603647}
   - component: {fileID: 1135185057501141394}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: plus_left_eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1057,7 +1057,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3701300475818116926}
   - component: {fileID: 4491300121247953859}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: plus_right_eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1141,7 +1141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6884076932098591176}
   - component: {fileID: 4449587456285351804}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: playerMovementController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1178,6 +1178,11 @@ MonoBehaviour:
   m_model: {fileID: 6870058022547640750}
   m_jumpForce: 350
   m_playerSpeed: 5
+  m_wallDetectRaycastLength: 0.69
+  m_wallDetectRaycastHeight: 0.5
+  m_wallDetectRaycastMask:
+    serializedVersion: 2
+    m_Bits: 65
   m_movementConformTime: 4
   m_groundDetectionRadius: 0.1
   m_groundDetectionMask:
@@ -1186,3 +1191,5 @@ MonoBehaviour:
   m_debugMode: 1
   m_debugGroundDetection: 1
   m_groundDetectionDebugColor: {r: 0, g: 0.27908874, b: 1, a: 0.22745098}
+  m_debugWallDetection: 1
+  m_wallDetectionDebugColor: {r: 1, g: 0.32, b: 0.27, a: 0.6}

@@ -16,6 +16,9 @@ public class PlayerMovementController : APlayerComponent
     private float m_jumpForce = 20;
 
     [SerializeField] private float m_playerSpeed = 3;
+    [SerializeField] private float m_wallDetectRaycastLength = 3;
+    [SerializeField] private float m_wallDetectRaycastHeight = 0.5f;
+    [SerializeField] private LayerMask m_wallDetectRaycastMask;
 
 
     [Tooltip("Time to conform to input in seconds")] [SerializeField]
@@ -29,6 +32,8 @@ public class PlayerMovementController : APlayerComponent
     [Header("Debugging")] [SerializeField] private bool m_debugMode = false;
     [SerializeField] private bool m_debugGroundDetection = true;
     [SerializeField] private Color m_groundDetectionDebugColor = new Color(1f, 0.32f, 0.27f, 0.6f);
+    [SerializeField] private bool m_debugWallDetection = true;
+    [SerializeField] private Color m_wallDetectionDebugColor = new Color(1f, 0.32f, 0.27f, 0.6f);
 #endif
 
     private GameControls m_actions;
@@ -75,19 +80,9 @@ public class PlayerMovementController : APlayerComponent
     {
         base.FixedManage();
         m_currentInput = Mathf.MoveTowards(m_currentInput, m_movementInput, m_movementConformTime * Time.deltaTime);
-
-        Vector2 velocity = m_rigidbody2D.velocity;
-        velocity.x = m_currentInput * m_playerSpeed;
-        m_rigidbody2D.velocity = velocity;
-
         IsGrounded = Physics2D.OverlapCircle(transform.position, m_groundDetectionRadius, m_groundDetectionMask) !=
                      null;
 
-        m_animController.Speed = new Vector2(m_currentInput, velocity.y);
-        m_animController.IsGrounded = IsGrounded;
-
-        
-       
         if (m_currentInput > 0)
         {
             FacingRight = true;
@@ -96,7 +91,25 @@ public class PlayerMovementController : APlayerComponent
         {
             FacingRight = false;
         }
-        
+
+
+        if (Physics2D.Raycast(
+            (Vector2) transform.position + Vector2.up * m_wallDetectRaycastHeight,
+            FacingRight ? Vector2.right : Vector2.left,
+            m_wallDetectRaycastLength,
+            m_wallDetectRaycastMask)
+        )
+        {
+            m_currentInput = 0;
+        }
+
+        Vector2 velocity = m_rigidbody2D.velocity;
+        velocity.x = m_currentInput * m_playerSpeed;
+        m_rigidbody2D.velocity = velocity;
+
+        m_animController.Speed = new Vector2(m_currentInput, velocity.y);
+        m_animController.IsGrounded = IsGrounded;
+
         Vector3 scale = m_model.localScale;
         scale.x = FacingRight ? 1 : -1;
         m_model.localScale = scale;
@@ -126,6 +139,14 @@ public class PlayerMovementController : APlayerComponent
             {
                 Gizmos.color = m_groundDetectionDebugColor;
                 Gizmos.DrawSphere(transform.position, m_groundDetectionRadius);
+            }
+
+            if (m_debugWallDetection)
+            {
+                Gizmos.color = m_wallDetectionDebugColor;
+                Gizmos.DrawRay(
+                    transform.position + Vector3.up * m_wallDetectRaycastHeight -
+                    Vector3.right * m_wallDetectRaycastLength, Vector3.right * m_wallDetectRaycastLength * 2);
             }
         }
     }
