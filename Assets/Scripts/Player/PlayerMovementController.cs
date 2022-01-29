@@ -7,24 +7,26 @@ using UnityEngine.Serialization;
 
 public class PlayerMovementController : APlayerComponent
 {
-    [Header("References")]
-    [SerializeField] private Rigidbody2D m_rigidbody2D;
-    
-    [Header("Parameters")]
-    [SerializeField] private float m_jumpForce = 20;
+    [Header("References")] [SerializeField]
+    private Rigidbody2D m_rigidbody2D;
+
+    [SerializeField] private Transform m_model;
+
+    [Header("Parameters")] [SerializeField]
+    private float m_jumpForce = 20;
+
     [SerializeField] private float m_playerSpeed = 3;
+
 
     [Tooltip("Time to conform to input in seconds")] [SerializeField]
     private float m_movementConformTime = 0.6f;
 
-    [SerializeField] private float groundDetectionRadius = 0.1f;
-    [SerializeField] private LayerMask groundDetectionMask = LayerMask.NameToLayer("ground");
-    
-    public bool IsGrounded { get; set; }
+    [SerializeField] private float m_groundDetectionRadius = 0.1f;
+    [SerializeField] private LayerMask m_groundDetectionMask;
+
 
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
-    [Header("Debugging")]
-    [SerializeField] private bool m_debugMode = false;
+    [Header("Debugging")] [SerializeField] private bool m_debugMode = false;
     [SerializeField] private bool m_debugGroundDetection = true;
     [SerializeField] private Color m_groundDetectionDebugColor = new Color(1f, 0.32f, 0.27f, 0.6f);
 #endif
@@ -32,13 +34,19 @@ public class PlayerMovementController : APlayerComponent
     private GameControls m_actions;
     private float m_movementInput = 0;
     private float m_currentInput = 0;
+    private PlayerAnimationController m_animController;
+
+    public bool IsGrounded { get; set; }
+    public bool FacingRight { get; private set; }
 
     #region Input
 
     public override void InitModule()
     {
         base.InitModule();
+        FacingRight = true;
         m_actions = PlayerManager.GetPlayerActions(p_parentPlayer.PlayerIndex);
+        m_animController = GetPlayerComponent<PlayerAnimationController>();
     }
 
     public override void Enable()
@@ -72,28 +80,54 @@ public class PlayerMovementController : APlayerComponent
         velocity.x = m_currentInput * m_playerSpeed;
         m_rigidbody2D.velocity = velocity;
 
-        IsGrounded = Physics2D.OverlapCircle(transform.position, groundDetectionRadius, groundDetectionMask) != null;
+        IsGrounded = Physics2D.OverlapCircle(transform.position, m_groundDetectionRadius, m_groundDetectionMask) !=
+                     null;
+
+        m_animController.Speed = new Vector2(m_currentInput, velocity.y);
+        m_animController.IsGrounded = IsGrounded;
+
+        
+       
+        if (m_currentInput > 0)
+        {
+            FacingRight = true;
+        }
+        else if (m_currentInput < 0)
+        {
+            FacingRight = false;
+        }
+        
+        Vector3 scale = m_model.localScale;
+        scale.x = FacingRight ? 1 : -1;
+        m_model.localScale = scale;
     }
-    
+
+
     private void OnJump(InputAction.CallbackContext a_obj)
     {
+        if (!IsGrounded)
+        {
+            return;
+        }
+
         m_rigidbody2D.AddForce(Vector2.up * m_jumpForce);
+        IsGrounded = false;
     }
 
     #endregion
 
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
 // DEBUG
-private void OnDrawGizmos()
-{
-    if (m_debugMode)
+    private void OnDrawGizmos()
     {
-        if (m_debugGroundDetection)
+        if (m_debugMode)
         {
-            Gizmos.color = m_groundDetectionDebugColor;
-            Gizmos.DrawSphere(transform.position, groundDetectionRadius);
+            if (m_debugGroundDetection)
+            {
+                Gizmos.color = m_groundDetectionDebugColor;
+                Gizmos.DrawSphere(transform.position, m_groundDetectionRadius);
+            }
         }
     }
-}
 #endif
 }

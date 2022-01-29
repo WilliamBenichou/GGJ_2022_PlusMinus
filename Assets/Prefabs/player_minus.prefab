@@ -181,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8299126643060790493, guid: 93d23288bf4116248a8fdf9624dfafdf, type: 3}
       propertyPath: m_InstanceId
-      value: -35868
+      value: -7316
       objectReference: {fileID: 0}
     - target: {fileID: 8299126643060790493, guid: 93d23288bf4116248a8fdf9624dfafdf, type: 3}
       propertyPath: m_ShapePathHash

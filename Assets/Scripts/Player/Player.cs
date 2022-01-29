@@ -24,6 +24,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        foreach (var playerComponent in m_playerComponents)
+        {
+            playerComponent.Manage();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        foreach (var playerComponent in m_playerComponents)
+        {
+            playerComponent.FixedManage();
+        }
+    }
+
     private void OnDisable()
     {
         foreach (var playerComponent in m_playerComponents)

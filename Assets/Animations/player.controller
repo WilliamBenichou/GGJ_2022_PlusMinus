@@ -10,7 +10,7 @@ BlendTree:
   m_Childs:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 3d3c8fafb00b22e4485586bd9ca69d69, type: 2}
-    m_Threshold: -1
+    m_Threshold: -5
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -18,7 +18,7 @@ BlendTree:
     m_Mirror: 0
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 1422096457f54fb4ab0edf5f6ddc01db, type: 2}
-    m_Threshold: 1
+    m_Threshold: 5
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
@@ -26,8 +26,8 @@ BlendTree:
     m_Mirror: 0
   m_BlendParameter: speedY
   m_BlendParameterY: speedX
-  m_MinThreshold: -1
-  m_MaxThreshold: 1
+  m_MinThreshold: -5
+  m_MaxThreshold: 5
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
@@ -96,7 +96,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: speedX
+    m_ConditionEvent: speedX_abs
     m_EventTreshold: 0.001
   - m_ConditionMode: 1
     m_ConditionEvent: isGrounded
@@ -149,7 +149,7 @@ AnimatorController:
   m_Name: player
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: speedX
+  - m_Name: speedX_abs
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -297,7 +297,7 @@ AnimatorStateTransition:
     m_ConditionEvent: isGrounded
     m_EventTreshold: 0
   - m_ConditionMode: 4
-    m_ConditionEvent: speedX
+    m_ConditionEvent: speedX_abs
     m_EventTreshold: 0.001
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3266417702919357413}
