@@ -7,10 +7,13 @@ TextureImporter:
     second: batterie
   - first:
       213: 2807523977507515757
-    second: battPlus
+    second: batt_plus
   - first:
       213: -3648943132305200174
-    second: battMinus
+    second: hl_batt
+  - first:
+      213: 4088407682474822634
+    second: batt_plu
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -121,11 +124,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: battPlus
+      name: batt_plus
       rect:
         serializedVersion: 2
-        x: 66
-        y: 97
+        x: 67
+        y: 98
         width: 110
         height: 110
       alignment: 0
@@ -142,7 +145,28 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: battMinus
+      name: hl_batt
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 90
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dbe859dd895c5dc0800000000000000
+      internalID: -3648943132305200174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: batt_plu
       rect:
         serializedVersion: 2
         x: 401
@@ -156,8 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dbe859dd895c5dc0800000000000000
-      internalID: -3648943132305200174
+      spriteID: aebc3ea3021fcb830800000000000000
+      internalID: 4088407682474822634
       vertices: []
       indices: 
       edges: []
