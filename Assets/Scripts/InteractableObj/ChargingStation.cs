@@ -11,6 +11,8 @@ public class ChargingStation : AInteractionController
     public float posConformSpeed = 8f;
     private Transform m_targetPoint;
 
+    public GameObject role_plusIndicator, role_minusIndicator;
+
     public Player PlayerRef => m_playerRef;
     public bool IsUsed => m_isUsed;
     
@@ -44,8 +46,6 @@ public class ChargingStation : AInteractionController
     {
         if (m_playerRef)
         {
-            
-            
             var targetPos = m_playerRef.transform.position;
             targetPos.x = m_targetPoint.position.x;
             targetPos.y = m_targetPoint.position.y;
@@ -54,5 +54,11 @@ public class ChargingStation : AInteractionController
                 targetPos,
                 posConformSpeed * Time.deltaTime);
         }
+    }
+
+    public void SetRole(bool a_roleIsPlus)
+    {
+        role_plusIndicator.SetActive(a_roleIsPlus);
+        role_minusIndicator.SetActive(!a_roleIsPlus);
     }
 }
