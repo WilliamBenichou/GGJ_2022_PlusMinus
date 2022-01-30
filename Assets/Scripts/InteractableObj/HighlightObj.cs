@@ -4,111 +4,62 @@ using UnityEngine;
 
 public class HighlightObj : MonoBehaviour
 {
-    [SerializeField] private bool plusReached = false;
-    [SerializeField] private bool minusReached = false;
-    [SerializeField] public int firstReach{ get; private set; }
-    [SerializeField] private int color;
-    
     [SerializeField] private Color[] hl_c = new Color[]{};
-    [SerializeField] private  SpriteRenderer hl_renderer;
+    [SerializeField] private SpriteRenderer[] hl_renderers;
 
+    private bool[] m_playerInSight = new bool[2];
+    
 
     public void Reached(int player)
     {
- 
-        //first to reach
-        if (!minusReached && !plusReached)
+        m_playerInSight[player] = true;
+        SetColor();
+    }
+
+    private void SetColor()
+    {
+        int nbInside = 0;
+        Color c = default;
+        for (int i = 0; i < 2; i++)
         {
-            firstReach = player;
+            if (m_playerInSight[i])
+            {
+                c = hl_c[i];
+                nbInside++;
+            }
         }
-        //note which player has reached
-        if (player == 0)
+
+        if (nbInside == 0)
         {
-            plusReached = true;
+            foreach (var spriteRenderer in hl_renderers)
+            {
+                spriteRenderer.enabled = false;
+            }
+            return;
         }
-        else
-        {
-            minusReached = true;
-        }
-        //if both players have reached
-        if (plusReached && minusReached)
-        {
-            color = 2;
-        }
-        else
-        {
-            color = firstReach;
-        }
+        if (nbInside == 2) c = hl_c[2]; 
+
         
-        hl_renderer.enabled = true;
-        hl_renderer.color = hl_c[color];
-       
+        foreach (var spriteRenderer in hl_renderers)
+        {
+            spriteRenderer.enabled = true;
+            spriteRenderer.color = c;
+        }
     }
 
     public void PlayerOOS(int player)
     {
-        //if 2 players
-        if (plusReached && minusReached)
-        {
-            if (player == firstReach)//changement de first reach
-            {
-                if (player == 0)
-                {
-                    firstReach = 1;
-                    plusReached = false;
-                    hl_renderer.color= hl_c[1];
-                }
-                else
-                {
-                    firstReach = 0;
-                    minusReached = false;
-                    hl_renderer.color= hl_c[0];
-                }
-            }
-            else //pas de changement de first reach
-            {
-                if (player == 0)
-                {
-                    plusReached = false;
-                    hl_renderer.color= hl_c[1];
-                }
-                else
-                {
-                    minusReached = false;
-                    hl_renderer.color= hl_c[0];
-                }
-            }
-            
-        }
-        else//if 1 player
-        {
-            firstReach = -1;
-            if (player == 0)
-            {
-                plusReached = false;
-                hl_renderer.enabled = false;
-            }
-            else
-            {
-                minusReached = false;
-                hl_renderer.enabled = false;
-            }
-        }
-
+        m_playerInSight[player] = false;
+        SetColor();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        firstReach = -1;
-        hl_renderer.enabled = false;
+        for (int i = 0; i < 2; i++)
+        {
+            m_playerInSight[i] = false;
+        }
+        SetColor();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    
-    
 }

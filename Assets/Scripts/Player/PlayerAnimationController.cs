@@ -7,7 +7,8 @@ public class PlayerAnimationController : APlayerComponent
     private static readonly int F_KEY_SPEED_X_ABS = Animator.StringToHash("speedX_abs");
     private static readonly int F_KEY_SPEED_Y = Animator.StringToHash("speedY");
     private static readonly int B_KEY_GROUNDED = Animator.StringToHash("isGrounded");
-
+    private static readonly int B_KEY_CHARGING = Animator.StringToHash("isCharging");
+    
     public Vector2 Speed
     {
         set
@@ -22,6 +23,14 @@ public class PlayerAnimationController : APlayerComponent
         set
         {
             m_animator.SetBool(B_KEY_GROUNDED, value);
+        }
+    }
+
+    public bool IsCharging
+    {
+        set
+        {
+            m_animator.SetBool(B_KEY_CHARGING, value);
         }
     }
 }

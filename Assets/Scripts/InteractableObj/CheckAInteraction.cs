@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckInteraction : InteractionController
+public class CheckAInteraction : AInteractionController
 {
     [SerializeField] private GameObject pencil;
     [SerializeField] private SpriteRenderer check_sprite;
@@ -20,11 +20,11 @@ public class CheckInteraction : InteractionController
         
     }
     
-    public override void useObj(int player)
+    public override void useObj(Player player)
     {
         base.useObj(player);
         //does something
-        if (player == 0)
+        if (player.PlayerIndex == 0)
         {
             this.gameObject.GetComponent<Collider2D>().enabled = false;
             this.gameObject.GetComponent<HighlightObj>().enabled = false;

@@ -49,6 +49,7 @@ public class PlayerMovementController : APlayerComponent
     public override void InitModule()
     {
         base.InitModule();
+        m_rigidbody2D.isKinematic = true;
         FacingRight = true;
         m_actions = PlayerManager.GetPlayerActions(p_parentPlayer.PlayerIndex);
         m_animController = GetPlayerComponent<PlayerAnimationController>();
@@ -57,11 +58,13 @@ public class PlayerMovementController : APlayerComponent
     public override void Enable()
     {
         base.Enable();
+        m_rigidbody2D.isKinematic = false;
         m_actions.Controls.Jump.performed += OnJump;
     }
 
     public override void Disable()
     {
+        m_rigidbody2D.isKinematic = true;
         m_actions.Controls.Jump.performed -= OnJump;
         base.Disable();
     }

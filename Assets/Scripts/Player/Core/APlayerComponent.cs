@@ -22,10 +22,12 @@ public abstract class APlayerComponent : MonoBehaviour, IPlayerComponent
 
     public virtual void Enable()
     {
+        IsEnabled = true;
     }
 
     public virtual void Disable()
     {
+        IsEnabled = false;
     }
 
     public virtual void Cleanup()

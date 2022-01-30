@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrossInteraction : InteractionController
+public class CrossAInteraction : AInteractionController
 {
     [SerializeField] private GameObject check;
     
@@ -18,11 +18,11 @@ public class CrossInteraction : InteractionController
         
     }
 
-    public override void useObj(int player)
+    public override void useObj(Player player)
     {
         base.useObj(player);
         //does something
-        if (player == 1)
+        if (player.PlayerIndex == 1)
         {
             check.SetActive(true);
             this.gameObject.active = false;

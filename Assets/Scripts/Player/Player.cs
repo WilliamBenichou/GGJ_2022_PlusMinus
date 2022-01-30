@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private APlayerComponent[] m_playerComponents = {};
+    [SerializeField] private APlayerComponent[] m_playerComponents = { };
     [field: SerializeField] public int PlayerIndex { get; private set; }
 
     private void Awake()
@@ -28,7 +28,8 @@ public class Player : MonoBehaviour
     {
         foreach (var playerComponent in m_playerComponents)
         {
-            playerComponent.Manage();
+            if (playerComponent.IsEnabled)
+                playerComponent.Manage();
         }
     }
 
@@ -36,7 +37,8 @@ public class Player : MonoBehaviour
     {
         foreach (var playerComponent in m_playerComponents)
         {
-            playerComponent.FixedManage();
+            if (playerComponent.IsEnabled)
+                playerComponent.FixedManage();
         }
     }
 

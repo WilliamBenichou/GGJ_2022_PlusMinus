@@ -76,7 +76,7 @@ public class PlayerInteractController : APlayerComponent
         
         if (lastCollider != null)
         {
-            lastCollider.gameObject.GetComponent<InteractionController>().useObj(p_parentPlayer.PlayerIndex);
+            lastCollider.gameObject.GetComponent<AInteractionController>().useObj(p_parentPlayer);
             //do action
         }
     }
