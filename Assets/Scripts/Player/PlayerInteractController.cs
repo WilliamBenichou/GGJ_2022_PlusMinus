@@ -35,12 +35,21 @@ public class PlayerInteractController : APlayerComponent
                     bestCollider = obj;
                 }
             }
-
-            if (lastCollider != bestCollider)
+            //player leaves an object
+            if (lastCollider != bestCollider && lastCollider != null)
             {
-                
+                lastCollider.gameObject.GetComponent<HighlightObj>().PlayerOOS(p_parentPlayer.PlayerIndex);
             }
-            bestCollider.gameObject.GetComponent<ObjectInteractionController>().Reached(p_parentPlayer.PlayerIndex);
+            bestCollider.gameObject.GetComponent<HighlightObj>().Reached(p_parentPlayer.PlayerIndex);
+            lastCollider = bestCollider;
+        }
+        else
+        {
+            if (lastCollider != null)
+            {
+                lastCollider.gameObject.GetComponent<HighlightObj>().PlayerOOS(p_parentPlayer.PlayerIndex);
+                lastCollider = null;
+            }
         }
     }
 
@@ -64,7 +73,12 @@ public class PlayerInteractController : APlayerComponent
     
     private void OnInteract(InputAction.CallbackContext obj)
     {
-        throw new System.NotImplementedException();
+        
+        if (lastCollider != null)
+        {
+            lastCollider.gameObject.GetComponent<InteractionController>().useObj(p_parentPlayer.PlayerIndex);
+            //do action
+        }
     }
     
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
