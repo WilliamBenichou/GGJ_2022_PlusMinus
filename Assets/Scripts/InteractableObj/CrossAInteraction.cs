@@ -25,7 +25,7 @@ public class CrossAInteraction : AInteractionController
         if (player.PlayerIndex == 1)
         {
             check.SetActive(true);
-            this.gameObject.active = false;
+            this.gameObject.SetActive(false);
         }
         
         

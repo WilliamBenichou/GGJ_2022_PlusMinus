@@ -10,6 +10,8 @@ public class PlayerMovementController : APlayerComponent
     [Header("References")] [SerializeField]
     private Rigidbody2D m_rigidbody2D;
 
+    public Rigidbody2D PlayerRigidbody2D => m_rigidbody2D;
+
     [SerializeField] private Transform m_model;
 
     [Header("Parameters")] [SerializeField]
@@ -40,6 +42,8 @@ public class PlayerMovementController : APlayerComponent
     private float m_movementInput = 0;
     private float m_currentInput = 0;
     private PlayerAnimationController m_animController;
+    private bool m_isFlying;
+    private float m_flyModeStartTime;
 
     public bool IsGrounded { get; set; }
     public bool FacingRight { get; private set; }
@@ -106,16 +110,32 @@ public class PlayerMovementController : APlayerComponent
             m_currentInput = 0;
         }
 
-        Vector2 velocity = m_rigidbody2D.velocity;
-        velocity.x = m_currentInput * m_playerSpeed;
-        m_rigidbody2D.velocity = velocity;
+        if (!m_isFlying)
+        {
+            Vector2 velocity = m_rigidbody2D.velocity;
+            velocity.x = m_currentInput * m_playerSpeed;
+            m_rigidbody2D.velocity = velocity;
+            m_animController.Speed = new Vector2(m_currentInput, velocity.y);
+        }
+        else
+        {
+            if (IsGrounded && Time.time - m_flyModeStartTime > 0.5f)
+            {
+                m_isFlying = false;
+            }
+        }   
 
-        m_animController.Speed = new Vector2(m_currentInput, velocity.y);
         m_animController.IsGrounded = IsGrounded;
 
         Vector3 scale = m_model.localScale;
         scale.x = FacingRight ? 1 : -1;
         m_model.localScale = scale;
+    }
+
+    public void EnableFlyMode()
+    {
+        m_isFlying = true;
+        m_flyModeStartTime = Time.time;
     }
 
 

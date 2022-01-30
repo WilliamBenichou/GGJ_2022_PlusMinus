@@ -63,11 +63,15 @@ public class PlayerInteractController : APlayerComponent
     {
         base.Enable();
         m_actions.Controls.Interact.performed += OnInteract;
+        m_actions.Controls.Interact.started += OnStart;
+        m_actions.Controls.Interact.canceled += OnCancel;
     }
 
     public override void Disable()
     {
         m_actions.Controls.Interact.performed -= OnInteract;
+        m_actions.Controls.Interact.started -= OnStart;
+        m_actions.Controls.Interact.canceled -= OnCancel;
         base.Disable();
     }
     
@@ -77,9 +81,23 @@ public class PlayerInteractController : APlayerComponent
         if (lastCollider != null)
         {
             lastCollider.gameObject.GetComponent<AInteractionController>().useObj(p_parentPlayer);
-            //do action
         }
     }
+    private void OnStart(InputAction.CallbackContext obj)
+    {
+        if (lastCollider != null)
+        {
+            lastCollider.gameObject.GetComponent<AInteractionController>().startUseObj(p_parentPlayer);
+        }
+    }
+    private void OnCancel(InputAction.CallbackContext obj)
+    {
+        if (lastCollider != null)
+        {
+            lastCollider.gameObject.GetComponent<AInteractionController>().cancelUseObj(p_parentPlayer);
+        }
+    }
+    
     
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
 // DEBUG

@@ -128,12 +128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15da7000489c7c14ead6d7e473f3cc78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPlayer: 0
   hl_c:
   - {r: 1, g: 0.44705883, b: 0.4509804, a: 1}
   - {r: 0.45490196, g: 1, b: 0.45490196, a: 1}
   - {r: 1, g: 1, b: 0.49019608, a: 1}
-  hl_renderer: {fileID: 2167891147601369431}
+  hl_renderers:
+  - {fileID: 2167891147601369431}
 --- !u!61 &2167891147323717310
 BoxCollider2D:
   m_ObjectHideFlags: 0
