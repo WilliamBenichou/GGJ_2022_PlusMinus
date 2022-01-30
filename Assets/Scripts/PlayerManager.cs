@@ -38,7 +38,7 @@ public class PlayerManager
         
         //temporary todo: remove that
         Bind_Internal(0, Keyboard.current);
-        Bind_Internal(1, Gamepad.current);
+        Bind_Internal(1, Keyboard.current);
     }
 
     public static void Bind(int a_index, InputDevice a_device)
