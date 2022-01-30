@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrossInteraction : InteractionController
 {
-    [SerializeField] private GameObject cross;
+    [SerializeField] private GameObject check;
     
     // Start is called before the first frame update
     void Start()
@@ -24,8 +24,11 @@ public class CrossInteraction : InteractionController
         //does something
         if (player == 1)
         {
+            check.SetActive(true);
             this.gameObject.active = false;
         }
+        
+        
 
     }
 }
